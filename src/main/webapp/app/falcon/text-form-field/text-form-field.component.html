@@ -1,0 +1,4 @@
+<div [formGroup]="form">
+  <label [attr.for]="formField.key">{{ formField.key }}</label>
+  <input [id]="formField.key" type="text" [formControlName]="formField.key" />
+</div>
