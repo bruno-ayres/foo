@@ -1,4 +1,4 @@
 <div class="form-group" [formGroup]="form">
   <label class="form-control-label" jhiTranslate="{{ formField.title }}" [attr.for]="formField.key"></label>
-  <input class="form-control" [id]="formField.key" type="text" [formControlName]="formField.key" />
+  <textarea class="form-control" rows="{{ textAreaFormField.rows }}" [id]="formField.key" [formControlName]="formField.key"></textarea>
 </div>

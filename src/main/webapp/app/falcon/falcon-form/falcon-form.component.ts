@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormField } from '../form-field';
 import { TextFormField } from '../text-form-field/text-form-field';
 
 @Component({
   selector: 'jhi-falcon-form',
   templateUrl: './falcon-form.component.html',
-  styleUrls: ['./falcon-form.component.scss'],
+  styleUrls: [],
 })
 export class FalconFormComponent implements OnInit {
   @Input() formFieldList!: FormField[];
@@ -16,7 +16,7 @@ export class FalconFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.field3 = new TextFormField('email', { value: 'preencher' });
+    this.field3 = new TextFormField('email', 'home.subtitle', { value: 'preencher' });
 
     const obj: { [key: string]: any } = {};
     this.formFieldList.forEach((formField: FormField) => {

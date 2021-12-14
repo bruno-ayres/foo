@@ -4,6 +4,6 @@ import { FieldComponent } from '../form-field/form-field.component';
 @Component({
   selector: 'jhi-text-form-field',
   templateUrl: './text-form-field.component.html',
-  styleUrls: ['./text-form-field.component.scss'],
+  styleUrls: [],
 })
 export class TextFormFieldComponent extends FieldComponent {}

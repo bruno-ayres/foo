@@ -8,6 +8,8 @@ import { Account } from 'app/core/auth/account.model';
 import { FormField } from 'app/falcon/form-field';
 import { TextFormField } from 'app/falcon/text-form-field/text-form-field';
 import { FormGroup, Validators } from '@angular/forms';
+import { CheckBoxFormField } from 'app/falcon/check-box-form-field/check-box-form-field';
+import { TextAreaFormField } from 'app/falcon/text-area-form-field/text-area-form-field';
 
 @Component({
   selector: 'jhi-home',
@@ -19,14 +21,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   formFieldList: FormField[];
   field1!: TextFormField;
   field2!: TextFormField;
+  field3!: CheckBoxFormField;
+  field4!: TextAreaFormField;
 
   private readonly destroy$ = new Subject<void>();
 
   constructor(private accountService: AccountService, private router: Router) {
-    this.field1 = new TextFormField('firstName', { value: 'aaa', validatorOrOpts: Validators.required });
-    this.field2 = new TextFormField('lastName', { value: 'galo', validatorOrOpts: Validators.required });
+    this.field1 = new TextFormField('firstName', 'home.subtitle', { value: 'aaa', validatorOrOpts: [Validators.required] });
+    this.field2 = new TextFormField('lastName', 'home.subtitle', {
+      value: 'galo',
+      validatorOrOpts: [Validators.required, Validators.email],
+    });
+    this.field3 = new CheckBoxFormField('remindMe', 'home.subtitle');
+    this.field4 = new TextAreaFormField('description', 'home.subtitle', { rows: 2 });
 
-    this.formFieldList = [this.field1, this.field2];
+    this.formFieldList = [this.field1, this.field2, this.field3, this.field4];
   }
 
   ngOnInit(): void {

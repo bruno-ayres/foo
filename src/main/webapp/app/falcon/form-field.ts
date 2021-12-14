@@ -1,17 +1,15 @@
 import { Type } from '@angular/core';
-import { AbstractControlOptions, AsyncValidatorFn, ValidatorFn } from '@angular/forms';
+import { AbstractControlOptions, ValidatorFn } from '@angular/forms';
+
+export interface FormFielAttribute {
+  value?: any;
+  validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions | null;
+}
 
 export class FormField {
-  public value: string;
+  public value: any;
   public validatorOrOpts: ValidatorFn | ValidatorFn[] | AbstractControlOptions | null;
-  constructor(
-    public component: Type<any>,
-    public key: string,
-    public options?: {
-      value?: string;
-      validatorOrOpts?: ValidatorFn | ValidatorFn[] | AbstractControlOptions | null;
-    }
-  ) {
+  constructor(public component: Type<any>, public key: string, public title: string, public options?: FormFielAttribute) {
     this.value = options?.value ?? '';
     this.validatorOrOpts = options?.validatorOrOpts ?? null;
   }

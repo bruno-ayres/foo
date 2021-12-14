@@ -1,0 +1,6 @@
+<div class="form-check" [formGroup]="form">
+  <label class="form-check-label" [attr.for]="formField.key">
+    <input class="form-check-input" [id]="formField.key" type="checkbox" [formControlName]="formField.key" />
+    <span jhiTranslate="{{ formField.title }}"></span>
+  </label>
+</div>
