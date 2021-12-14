@@ -1,8 +1,1 @@
 <ng-template jhiHostView></ng-template>
-<div *ngIf="formControl.invalid && (formControl.dirty || formControl.touched)">
-  <div *ngFor="let error of errors | keyvalue">
-    <small class="form-text text-danger" jhiTranslate="entity.validation.{{ error.key }}">
-      {{ error.key + ' ' + error.value }}
-    </small>
-  </div>
-</div>

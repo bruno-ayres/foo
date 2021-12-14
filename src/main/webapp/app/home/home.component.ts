@@ -10,6 +10,7 @@ import { TextFormField } from 'app/falcon/text-form-field/text-form-field';
 import { FormGroup, Validators } from '@angular/forms';
 import { CheckBoxFormField } from 'app/falcon/check-box-form-field/check-box-form-field';
 import { TextAreaFormField } from 'app/falcon/text-area-form-field/text-area-form-field';
+import { DateFormField } from 'app/falcon/date-form-field/date-form-field';
 
 @Component({
   selector: 'jhi-home',
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   field2!: TextFormField;
   field3!: CheckBoxFormField;
   field4!: TextAreaFormField;
+  field5!: DateFormField;
 
   private readonly destroy$ = new Subject<void>();
 
@@ -34,8 +36,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.field3 = new CheckBoxFormField('remindMe', 'home.subtitle');
     this.field4 = new TextAreaFormField('description', 'home.subtitle', { rows: 2 });
+    this.field5 = new DateFormField('startDate', 'home.subtitle', { validatorOrOpts: [Validators.required] });
 
-    this.formFieldList = [this.field1, this.field2, this.field3, this.field4];
+    this.formFieldList = [this.field1, this.field2, this.field3, this.field4, this.field5];
   }
 
   ngOnInit(): void {

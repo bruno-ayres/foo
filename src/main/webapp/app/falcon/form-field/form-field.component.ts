@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { Component, ComponentFactoryResolver, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { FormField } from '../form-field';
 import { HostViewDirective } from '../host-view.directive';
 
@@ -9,9 +9,6 @@ export class FieldComponent {
 
   get formControl(): FormControl {
     return this.form.controls[this.formField.key] as FormControl;
-  }
-  get errors(): ValidationErrors | null {
-    return this.formControl.errors;
   }
 }
 
@@ -24,6 +21,7 @@ export class FormFieldComponent extends FieldComponent implements OnInit {
   @Input() form!: FormGroup;
   @Input() formField!: FormField;
   @ViewChild(HostViewDirective, { static: true }) jhiHostView!: HostViewDirective;
+  @ViewChild('defaultErrorTemplate', { static: true }) defaultErrorTemplate!: TemplateRef<any>;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) {
     super();
