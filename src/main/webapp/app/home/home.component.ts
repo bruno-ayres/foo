@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.field3 = new CheckBoxFormField('remindMe', 'home.subtitle');
     this.field4 = new TextAreaFormField('description', 'home.subtitle', { rows: 2 });
-    this.field5 = new DateFormField('startDate', 'home.subtitle', { validatorOrOpts: [Validators.required] });
+    this.field5 = new DateFormField('startDate', 'home.subtitle', { value: '2021-12-31', validatorOrOpts: [Validators.required] });
 
     this.formFieldList = [this.field1, this.field2, this.field3, this.field4, this.field5];
   }
