@@ -1,27 +1,57 @@
 <div class="row">
-  <div class="col-md-3">
-    <span class="hipster img-fluid rounded"></span>
+  <div class="col-md-6">
+    <div class="wrapper">
+      <h2>Calais - Movie Search</h2>
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Search Movie"
+          [(ngModel)]="selectedMovie"
+          [matAutocomplete]="auto"
+          [formControl]="searchMoviesCtrl"
+          placeholder="Min 3 Characters Ex. Ant"
+        />
+        <button *ngIf="selectedMovie" matSuffix mat-icon-button aria-label="Clear" (click)="clearSelection()">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-autocomplete [panelWidth]="400" #auto="matAutocomplete" (optionSelected)="onSelected()" [displayWith]="displayWith">
+          <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+          <ng-container *ngIf="!isLoading">
+            <mat-option *ngFor="let movie of filteredMovies" [value]="movie">
+              <span
+                ><b>{{ movie.Title }}</b> ({{ movie.Year }})</span
+              >
+            </mat-option>
+          </ng-container>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <br />
+
+      <ng-container *ngIf="errorMsg; else elseTemplate">
+        {{ errorMsg }}
+      </ng-container>
+      <ng-template #elseTemplate>
+        <div class="movie-details" *ngIf="selectedMovie?.Title">
+          <div>
+            <img [src]="selectedMovie?.Poster" style="height: 250px" />
+          </div>
+          <div>
+            <h3>Selected Value: {{ selectedMovie?.Title }}</h3>
+            <ul>
+              <li>Year: {{ selectedMovie?.Year }}</li>
+            </ul>
+          </div>
+        </div>
+      </ng-template>
+    </div>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-md-6">
     <div [ngSwitch]="account !== null">
-      <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
-          >You are logged in as user "{{ account.login }}".</span
-        >
-      </div>
-
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
-        <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a
-        ><span jhiTranslate="global.messages.info.authenticated.suffix"
-          >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-          password="user").</span
-        >
-      </div>
-
-      <jhi-falcon-form #teste [formFieldList]="formFieldList"></jhi-falcon-form>
+      <cfw-form #teste [formFieldList]="cfwFormFieldList"></cfw-form>
       <button type="button" (click)="showForm(teste.form)">Teste</button>
+      <p>Value: {{ teste?.form?.value | json }}</p>
     </div>
   </div>
 </div>

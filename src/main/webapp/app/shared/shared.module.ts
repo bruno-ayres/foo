@@ -12,9 +12,10 @@ import { FormatMediumDatePipe } from './date/format-medium-date.pipe';
 import { SortByDirective } from './sort/sort-by.directive';
 import { SortDirective } from './sort/sort.directive';
 import { ItemCountComponent } from './pagination/item-count.component';
+import { AngularMaterialCommonModule } from './material-common.module';
 
 @NgModule({
-  imports: [SharedLibsModule],
+  imports: [SharedLibsModule, AngularMaterialCommonModule],
   declarations: [
     FindLanguageFromKeyPipe,
     TranslateDirective,
@@ -30,6 +31,7 @@ import { ItemCountComponent } from './pagination/item-count.component';
   ],
   exports: [
     SharedLibsModule,
+    AngularMaterialCommonModule,
     FindLanguageFromKeyPipe,
     TranslateDirective,
     AlertComponent,

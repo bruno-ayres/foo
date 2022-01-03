@@ -9,6 +9,7 @@ import { Account } from 'app/core/auth/account.model';
 import { AccountService } from 'app/core/auth/account.service';
 import { LoginService } from 'app/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'jhi-navbar',
@@ -29,6 +30,7 @@ export class NavbarComponent implements OnInit {
     private sessionStorageService: SessionStorageService,
     private accountService: AccountService,
     private profileService: ProfileService,
+    private _adapter: DateAdapter<any>,
     private router: Router
   ) {
     if (VERSION) {
@@ -47,6 +49,7 @@ export class NavbarComponent implements OnInit {
   changeLanguage(languageKey: string): void {
     this.sessionStorageService.store('locale', languageKey);
     this.translateService.use(languageKey);
+    this._adapter.setLocale(languageKey);
   }
 
   collapseNavbar(): void {

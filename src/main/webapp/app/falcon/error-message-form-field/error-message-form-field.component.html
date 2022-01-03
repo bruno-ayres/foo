@@ -1,7 +1,0 @@
-<div *ngIf="control?.invalid && (control?.dirty || control?.touched)">
-  <div *ngFor="let error of control?.errors | keyvalue">
-    <small class="form-text text-danger" jhiTranslate="entity.validation.{{ error.key }}">
-      {{ error.key + ' ' + error.value }}
-    </small>
-  </div>
-</div>
